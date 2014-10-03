@@ -34,10 +34,25 @@ class Rational(n: Int, d: Int) {
       denom * that.denom
     )
 
+  def - (that: Rational): Rational = new Rational(numer - i * denom, denom)
+
   def * (that: Rational): Rational = new Rational(numer * that.numer, denom * that.denom)
+
+  def / (that: Rational): Rational = new Rational(numer * that.denom, denom * that.numer)
 
   // constants don't need to follow Java's MY_CONSTANT naming convention
   val MyConstant = 5
+
+  // METHOD OVERLOADING so we can say r * 2 instead of r * new Rational(2)
+  def + (i: Int): Rational = new Rational(numer + i * denom, denom)
+  def - (i: Int): Rational = new Rational(numer - i * denom, denom)
+  def * (i: Int): Rational = new Rational(numer * i, denom)
+  def / (i: Int): Rational = new Rational(numer, denom * i)
+
+  // IMPLICIT CONVERSIONS so we can say 2 * r, not just r * 2
+  // automatically converts Ints to Rationals when needed
+  implicit def intToRational(x: Int) = new Rational(x)
+
 
 
 }
