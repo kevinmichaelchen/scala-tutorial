@@ -1,22 +1,4 @@
-object Chapter3 {
-  def main(args: Array[String]) {
-
-    // iterate
-    for (i <- 1 to 10) println(i)
-    // functions are 1st class
-    args.foreach(arg => println(arg))
-    args.foreach((arg: String) => println(arg))
-    // for function literals that consist of 1 statement & 1 argument
-    args.foreach(println)
-
-    // creating arrays
-    val s: Array[String] = new Array[String](1)
-    s(0) = "hi"
-    // transformed to...
-    s.update(0, "hi")
-    // using the "static" companion object for Array
-    val x = Array.apply(1,2,3)
-
+class ListPractice {
     // creating lists
     val y = List(1,2,3)
     val z = List(4,5,6)
@@ -55,45 +37,4 @@ object Chapter3 {
     q.remove(s => s % 2 == 0)  // returns a list with the even numbers removed
     q.reverse                  // returns 4 :: 3 :: 2 :: 1 :: Nil
     q.sort((s,t) => s < t)     // sorts list in ascending order
-
-
-    // TUPLES
-    // Scala infers this to be Tuple2[Int, String].
-    // Scala can only infer up to Tuple22
-    val pair = (99, "balloons")
-    // 1-indexed b/c of Haskell/ML tradition around statically typed tuples
-    println(pair._1) // prints 99
-
-    // SETS
-    // by default Scala uses scala.collection.immutable.Set
-    var jetSet = Set("Boeing", "Airbus")
-    jetSet += "Lear"
-    println(jetSet.contains("Cessna"))
-    // for mutable sets, we can use a val
-    val movieSet: scala.collection.mutable.Set = Set("Hitch", "Poltergeist")
-    movieSet += "Shrek" // equivalent to movieSet.+=("Shrek")
-    println(movieSet + "Star Wars")
-
-    // MAPS
-    // immutable map is the default
-    val romanNumeral = Map(
-      1 -> "I", 2 -> "II", 3 -> "III", 4 -> "IV", 5 -> "V"
-    )
-    println(romanNumberal(4))
-    // mutable maps
-    import scala.collection.mutable.Map
-    val treasureMap = Map[Int, String]()
-    treasureMap += (1 -> "a")
-    println(treasureMap(0))
-
-    // READ LINES FROM FILE
-    import scala.io.Source
-    if (args.length > 0) {
-      // getLines method returns Iterator[String]
-      for (line <- Source.fromFile(args(0)).getLines)
-        print(line.length + " " + line
-    } else Console.err.println("Please enter filename")
-
-  }
 }
-
